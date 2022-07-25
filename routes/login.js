@@ -53,11 +53,11 @@ router.get('/done', (req, res, next) => {
            
             // DB 연결
             var con = mysql.createConnection({
-                host: '', 
-                port: '',
-                user: '', 
-                password: '', 
-                database: ''
+                host: 'timetuning.cwrxmkgsy5uc.ap-northeast-2.rds.amazonaws.com', 
+                port: '3306',
+                user: 'admin', 
+                password: '12345678', 
+                database: 'timetuning'
             });
 
             // 데이터 베이스가 연결되었는지 확인
