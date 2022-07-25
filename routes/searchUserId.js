@@ -40,7 +40,7 @@ router.get("/search", async function (req, res, next) {
     }
   } else {
     res.send({
-      message: "No results or fail",
+      message: "검색 결과가 없습니다.",
       status: "null",
     });
   }

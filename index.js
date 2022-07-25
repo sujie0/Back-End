@@ -16,7 +16,6 @@ app.get("", (req, res, next) => {
 
 app.use("/login", login);
 app.use("/signup", signup);
-n;
 app.use("/userId", userId);
 
 app.set("port", process.env.PORT || port_num);
