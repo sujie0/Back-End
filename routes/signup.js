@@ -71,11 +71,11 @@ router.get('/done', (req, res, next) => {
 
             // 데이터 베이스 정보 불러오기
             var con = mysql.createConnection({
-                host: 'localhost', 
-                port: '3306',
-                user: 'root', 
-                password: 'oe4989',
-                database: 'timetuning'
+                host: '', 
+                port: '',
+                user: '', 
+                password: '',
+                database: ''
             });
     
             // 데이터 베이스가 연결되었는지 확인
