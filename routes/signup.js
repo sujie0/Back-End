@@ -1,4 +1,5 @@
 //회원가입 페이지 구현
+const { application } = require('express');
 const express = require('express');
 const router = express.Router();
 
@@ -47,69 +48,5 @@ router.get('', (req, res, next) => {
     `;
     res.writeHead(200);
     res.end(html);
-
-    res.send("라우팅을 이용하여 signup 페이지에 접속");
 });
-
-/*이미 존재하는 id를 회원가입할 때 입력하는 경우에 대한 예외처리 필요*/
-
-//회원가입을 성공적으로 완료한 경우
-router.get('/done', (req, res, next) => {
-// 이 부분에서 데이터를 db로 넘기기
-
-    res.send("회원가입이 완료되었습니다!");
-    var body = '';
-        request.on('data', function(data){
-            body = body + data;
-        });
-        request.on('end', function(req){
-            var post = qs.parse(body);
-            const obj = JSON.parse(JSON.stringify(post)); 
-            var keys = Object.keys(obj);
-            
-            var mysql = require('mysql');
-
-            // 데이터 베이스 정보 불러오기
-            var con = mysql.createConnection({
-                host: 'timetuning.cwrxmkgsy5uc.ap-northeast-2.rds.amazonaws.com', 
-                port: '3306',
-                user: 'admin', 
-                password: '12345678',
-                database: 'timetuning'
-            });
-    
-            // 데이터 베이스가 연결되었는지 확인
-            con.connect((err) => {
-                if (err) {
-                    console.log(err);
-                    con.end();
-                    throw err;
-                } else {
-                    console.log("DB 접속 성공");
-                }
-            });
-
-            module.exports = con;
-
-            // sql문
-            var sql = 'INSERT INTO new_table(user_name, user_id, user_pw, user_email) VALUES(?,?,?,?)';
-            var params = [obj[keys[0]],obj[keys[1]],obj[keys[2]],obj[keys[3]]]
-            con.query(sql, params, function(err, rows, fields){
-                if(err){
-                    console.log(err);
-                } else{
-                    console.log(rows.name);
-                }
-            });
-
-            con.end();
-
-
-            // 전송 후 첫화면으로 돌아가기
-            response.writeHead(302, {Location : '/'});
-            response.end();
-        });
-
-});
-
 module.exports = router;
