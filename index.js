@@ -1,26 +1,32 @@
 //IP 주소가 바뀌면 안드로이드 앱 내에 있는 url 주소도 바꿔주어야 정상 동작함
-
 var express = require("express");
 var http = require("http");
 var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 var app = express();
 var port_num = 3000;
 
 const login = require("./routes/login");
+const login_process=require("./routes/login_process");
 const signup = require("./routes/signup");
+const signup_process=require("./routes/signup_process");
 const userId = require("./routes/searchUserId");
+const createSchedule=require("./routes/createSchedule");
 
 app.get("", (req, res, next) => {
   res.send("메인 페이지");
 });
 
 app.use("/login", login);
+app.use("/login_process",login_process);
 app.use("/signup", signup);
+app.use("/signup_process",signup_process);
 app.use("/userId", userId);
+app.use("/create",createSchedule);
 
 app.set("port", process.env.PORT || port_num);
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+
 
 app.use(function (req, res, next) {
   console.log("일정 제목, 일정 설명, 가능한 날들 받아오기");

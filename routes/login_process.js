@@ -30,7 +30,7 @@ router.post('', (req, res, next) => {
 
     module.exports = con;
 
-    //db에 데이터 저장
+    //db에서 데이터 가져오기
     var sql = 'SELECT * from User where userId=?';
     con.query(sql, [id], function(err, data){
         try{   
