@@ -31,7 +31,7 @@ router.post('', (req, res, next) => {
     });
     module.exports=con;
    
-    var sql = 'SELECT * from new_table where user_id=?';
+    var sql = 'SELECT * from User where userId=?';
     con.query(sql, id, function(err, data){
         if(data.length){
             res.send("<script>alert('이미 존재하는 아이디입니다.');location.href='../routes/signup\';</script>");
@@ -41,7 +41,7 @@ router.post('', (req, res, next) => {
         else{
             if(name&&id&&pw&&mail){
                 if(pw==pw_check){
-                    con.query('INSERT INTO new_table(user_name,user_id,user_pw,user_mail) VALUES (?, ?, ?, ?)',[name, id, pw, mail],function(err,result, field){
+                    con.query('INSERT INTO User(userName,userId,password,userEmail) VALUES (?, ?, ?, ?)',[name, id, pw, mail],function(err,result, field){
                         if(err){
                             console.log(err);
                             con.end();

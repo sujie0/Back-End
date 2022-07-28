@@ -31,11 +31,11 @@ router.post('', (req, res, next) => {
     module.exports = con;
 
     //db에 데이터 저장
-    var sql = 'SELECT * from new_table where user_id=?';
+    var sql = 'SELECT * from User where userId=?';
     con.query(sql, [id], function(err, data){
         try{   
-            var valid_id = data[0].user_id;
-            var valid_pw = data[0].user_pw; 
+            var valid_id = data[0].userId;
+            var valid_pw = data[0].password; 
         
             if(id==valid_id){
                 if(pw==valid_pw){
