@@ -2,6 +2,12 @@
 const express = require("express");
 const router = express.Router();
 
+const baseResponse = require("../../config/baseResponseStatus");
+const {response} = require("../../../config/response");
+const {errResponse} = require("../../../config/response");
+const baseResponseStatus = require("../config/baseResponseStatus");
+
+
 router.get("/search", async function (req, res, next) {
   res.send("라우팅을 이용하여 user id 검색 페이지에 접속");
 

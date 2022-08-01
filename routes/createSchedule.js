@@ -1,6 +1,11 @@
-const { application } = require('express');
+const { application, response } = require('express');
 const express = require('express');
 const router = express.Router();
+
+const baseResponse = require("../../../config/baseResponseStatus");
+const {response} = require("../../../config/response");
+const {errResponse} = require("../../../config/response");
+
 
 router.get('', (req, res, next) => {
     var userIdx=req.query.userIdx;
@@ -31,7 +36,9 @@ router.get('', (req, res, next) => {
 
     module.exports = con;
 
-    con.query('INSERT INTO Schedule(userIdx,scheduleTitle,scheduleCom,scheduleColor,startYMD,endYMD) VALUES (?, ?, ?, ?, ?, ?)',[userIdx, title, com, color, start, end],function(err,result, field){
+    con.query(
+        insertScheduledata,
+        [userIdx, title, com, color, start, end],function(err,result, field){
         if(err){
             console.log(err);
             con.end();
@@ -39,6 +46,7 @@ router.get('', (req, res, next) => {
         else{
             //console.log("일정 생성이 완료되었습니다.");
             res.send("일정 생성이 완료되었습니다.");
+            return response(baseResponseStatus.SUCCESS);
             con.end();
         }
     });
