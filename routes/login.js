@@ -2,6 +2,7 @@ const { application } = require('express');
 const express = require('express');
 const router = express.Router();
 
+const {pool} = require("../config/database");
 const baseResponse = require("../config/baseResponseStatus");
 const {errResponse} = require("../config/response");
 const {response}=require("../config/response");
@@ -13,30 +14,12 @@ router.post('', (req, res, next) => {
     const {id, pw}=req.body;
 
     // DB 연결
-    var con = mysql.createConnection({
-        host: 'timetuning.cwrxmkgsy5uc.ap-northeast-2.rds.amazonaws.com', 
-        port: '3306',
-        user: 'admin', 
-        password: '12345678', 
-        database: 'timetuning'
-    });
-
-    // 데이터 베이스가 연결되었는지 확인
-    con.connect((err) => {
-        if (err) {
-            console.log(err);
-            con.end();
-            throw err;
-        } else {
-            console.log("DB 접속 성공");
-        }
-    });
-
-    module.exports = con;
+    const connection = await pool.getConnection(async (conn) => conn);
+    module.exports = connection;
 
     //db에서 데이터 가져오기
    // var sql = 'SELECT * from User where userId=?';
-    con.query(sql.searchUerId, [id], function(err, data){
+    connection.query(sql.searchUerId, [id], function(err, data){
         try{   
             var valid_id = data[0].userId;
             var valid_pw = data[0].password; 
@@ -59,7 +42,7 @@ router.post('', (req, res, next) => {
         }
     });
 
-    con.end(); //db 연결 종료
+    connection.end(); //db 연결 종료
           
 });
 
