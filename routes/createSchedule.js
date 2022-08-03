@@ -15,15 +15,6 @@ router.get('', (req, res, next) => {
     var start=req.query.start;
     var end=req.query.end;
 
-    var mysql=require('mysql');
-    var con=mysql.createConnection({
-        host: 'timetuning.cwrxmkgsy5uc.ap-northeast-2.rds.amazonaws.com',
-        port: '3306',
-        user: 'admin',
-        password: '12345678',
-        database: 'timetuning'
-    });
-
     con.connect((err) => {
         if (err) {
             console.log(err);
@@ -37,7 +28,7 @@ router.get('', (req, res, next) => {
     module.exports = con;
 
     con.query(
-        insertScheduledata,
+        'insertScheduleData',
         [userIdx, title, com, color, start, end],function(err,result, field){
         if(err){
             console.log(err);
@@ -46,7 +37,7 @@ router.get('', (req, res, next) => {
         else{
             //console.log("일정 생성이 완료되었습니다.");
             res.send("일정 생성이 완료되었습니다.");
-            return response(baseResponseStatus.SUCCESS);
+            res.send(response(baseResponseStatus.SUCCESS));
             con.end();
         }
     });

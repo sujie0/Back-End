@@ -38,23 +38,6 @@ app.use(function (req, res, next) {
   var paramMonth = req.body.month;
   var paramDay = req.body.day;
 
-  if (!paramYear)
-    return res.send(response(baseResponse.DATESELECTION_YEAR_EMPTY));
-
-  if (paramYear.length != 4)
-    return res.send(response(baseResponse.DATESELECTION_YEAR_LENGTH));
-
-  if (!paramMonth)
-    return res.send(response(baseResponse.DATESELECTION_MONTH_EMPTY));
-
-  if (paramMonth.length != 2)
-    return res.send(response(baseResponse.DATESELECTION_MONTH_LENGTH));
-
-  if (!paramDay)
-    return res.send(response(baseResponse.DATESELECTION_DAY_EMPTY));
-
-  if (paramDay.length != 2)
-    return res.send(response(baseResponse.DATESELECTION_DAY_LENGTH));
 
   console.log(
     "일정 제목 : " +
