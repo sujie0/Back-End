@@ -42,7 +42,7 @@ module.exports ={
     SIGNUP_REDUNDANT_EMAIL : { "isSuccess": false, "code": 3001, "message":"이미 사용중인 이메일입니다." },
     SIGNUP_REDUNDANT_USERID : { "isSuccess": false, "code": 3002, "message":"이미 사용중인 아이디입니다." },//회원가입 중복 오류
 
-    SIGNIN_EMAIL_WRONG : { "isSuccess": false, "code": 3003, "message": "존재하는 아이디가 없습니다." },
+    SIGNIN_USERID_WRONG : { "isSuccess": false, "code": 3003, "message": "존재하는 아이디가 없습니다." },
     SIGNIN_PASSWORD_WRONG : { "isSuccess": false, "code": 3004, "message": "잘못된 비밀번호입니다." },//로그인
 
     //Connection, Transaction 등의 서버 오류/4000번대

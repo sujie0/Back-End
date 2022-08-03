@@ -8,9 +8,7 @@ var app = express();
 var port_num = 3000;
 
 const login = require("./routes/login");
-const login_process=require("./routes/login_process");
 const signup = require("./routes/signup");
-const signup_process=require("./routes/signup_process");
 const userId = require("./routes/searchUserId");
 const createSchedule=require("./routes/createSchedule");
 
@@ -19,42 +17,13 @@ app.get("", (req, res, next) => {
 });
 
 app.use("/login", login);
-app.use("/login_process",login_process);
 app.use("/signup", signup);
-app.use("/signup_process",signup_process);
 app.use("/userId", userId);
 app.use("/create",createSchedule);
 
 app.set("port", process.env.PORT || port_num);
 
 
-app.use(function (req, res, next) {
-  console.log("일정 제목, 일정 설명, 가능한 날들 받아오기");
-  var approve = { "일정 제목": "NO", "일정 설명": "NO", "선택된 날짜": "NO" };
-
-  var paramName = req.body.name;
-  var paramExplain = req.body.explain;
-  var paramYear = req.body.year;
-  var paramMonth = req.body.month;
-  var paramDay = req.body.day;
-
-
-  console.log(
-    "일정 제목 : " +
-      paramName +
-      "  일정 설명 : " +
-      paramExplain +
-      " 선택된 날짜 : " +
-      paramYear +
-      "년 " +
-      paramMonth +
-      "월 " +
-      paramDay +
-      "일"
-  );
-
-  res.send(approve);
-});
 
 /*
 var server = http.createServer(app).listen(app.get('port'),function(){
