@@ -15,6 +15,7 @@ module.exports ={
     CREATESCHEDULE_DAY_LENGTH: { "isSuccess": false, "code": 2006, "message":"일은 2자리로 입력해주세요" },
 
         //회원가입 입력 오류(아이디, 이름, 이메일, 비밀번호)-2100번대
+    SIGNUP_EMPTY : { "isSuccess": false, "code": 2100, "message":"모든 항목을 입력해주세요"},
     SIGNUP_USERID_EMPTY : { "isSuccess": false, "code": 2101, "message":"아이디를 입력해주세요" },
     SIGNUP_USERID_LENGTH : { "isSuccess": false, "code": 2102, "message":"아이디는 30자리 미만으로 입력해주세요." },
     SIGNUP_USERNAME_EMPTY : {"isSuccess": false, "code": 2103, "message":"이름을 입력해주세요"},
@@ -24,6 +25,7 @@ module.exports ={
     SIGNUP_EMAIL_ERROR_TYPE : { "isSuccess": false, "code": 2107, "message":"이메일을 형식을 정확하게 입력해주세요." },
     SIGNUP_PASSWORD_EMPTY : { "isSuccess": false, "code": 2108, "message": "비밀번호를 입력 해주세요." },
     SIGNUP_PASSWORD_LENGTH : { "isSuccess": false, "code": 2109, "message":"비밀번호는 6~20자리를 입력해주세요." },
+    SIGNUP_PASSWORD_WRONG: {"isSuccess": false, "code": 2110, "message":"비밀번호가 다릅니다."},
 
         //로그인 입력오류-2200번대
     SIGNIN_EMAIL_EMPTY : { "isSuccess": false, "code": 2201, "message":"이메일을 입력해주세요" },
@@ -39,7 +41,7 @@ module.exports ={
     SIGNUP_REDUNDANT_EMAIL : { "isSuccess": false, "code": 3001, "message":"이미 사용중인 이메일입니다." },
     SIGNUP_REDUNDANT_USERID : { "isSuccess": false, "code": 3002, "message":"이미 사용중인 아이디입니다." },//회원가입 중복 오류
 
-    SIGNIN_EMAIL_WRONG : { "isSuccess": false, "code": 3003, "message": "존재하는 아이디가 없습니다." },
+    SIGNIN_USERID_WRONG : { "isSuccess": false, "code": 3003, "message": "존재하는 아이디가 없습니다." },
     SIGNIN_PASSWORD_WRONG : { "isSuccess": false, "code": 3004, "message": "잘못된 비밀번호입니다." },//로그인
 
     //Connection, Transaction 등의 서버 오류/4000번대
