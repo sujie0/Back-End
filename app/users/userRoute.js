@@ -1,18 +1,22 @@
 module.exports = function(app){
-    const user = require('./userController');
+    const signup = require('./signup');
+    const login = require('./login');
+    const deleteUser = require('./deleteUser');
+    const changePassword = require('./changePassword');
+    const getSchedules = require('./getSchedules');
 
-    // 1.1 유저 생성 (회원가입) API
-    app.post('/app/users', user.postUsers);
+    // 1. 유저 생성 (회원가입) API -> OK
+    app.use('/users', signup);
 
-    // 1.2 유저 프로필 조회 API
-    app.get('/app/users/profile',user.getUsers); 
+    // 2. 비밀번호 변경 API -> OK
+    app.use('/users/password/edit', changePassword);
 
-    // 1.3 프로필 수정 API
-    app.patch('/app/users/profile/edit', user.getUserById);
+    // 3. 유저 삭제 API -> OK
+    app.use('/users/userinfo/delete', deleteUser);
 
-    // 1.4 유저 삭제 API
-    app.patch('/app/users/userinfo/delete', user.getUserById);
-
-    // 1.5 유저 일정 조회 API
-    app.get('/app/users/listSchedules',user.getUsers); 
+    // 4. 유저 일정 조회 API -> userId로 하는건 되는데 userIdx로 하는건 안됨
+    app.use('/users/listSchedules', getSchedules);
+    
+    // 5. 로그인 API -> OK
+    app.use('/users/login', login);
 };
