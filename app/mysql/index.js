@@ -4,11 +4,11 @@ const sql = require("./sql.js");
 
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host: '',
+  host: '127.0.0.1',
   port: 3307,
-  user: 'admin',
-  password: '12345678',
-  database: 'dev'
+  user: 'root',
+  password: '1234',
+  database: 'test'
 });
 
 const query = async (alias, values) => {

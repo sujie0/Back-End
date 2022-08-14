@@ -1,5 +1,6 @@
 module.export = {
-    scheduleList: `SELECT * FROM schudule `,//스케줄 정보 조회
+    scheduleList: `SELECT * FROM schudule `,//스케줄 목록 조회
+    scheduleInfo: `SELECT * FROM schudule where scheduleIdx = ?`,//스케줄 정보 조회
     scheduleCreate: `INSERT INTO schedule SET ?`,//스케줄 생성
 
     addMember: `INSERT INTO schedulemembers (userIdx, userId, userName, scheduleIdx)
