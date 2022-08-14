@@ -1,14 +1,23 @@
 {
   "dependencies": {
     "body-parser": "^1.20.0",
+<<<<<<< HEAD
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mysql": "^2.18.1",
+=======
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "method-override": "^3.0.0",
+>>>>>>> 5c2f779376dedbc63c0f0262922b8c3b3be2af3c
     "mysql2": "^2.3.3",
     "passport": "^0.6.0",
     "passport-kakao": "^1.0.1",
     "sequelize": "^6.21.3",
-    "socket.io": "^4.5.1"
+    "socket.io": "^4.5.1",
+    "winston": "^3.8.1",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "name": "timetuning",
   "version": "1.0.0",
