@@ -5,6 +5,12 @@ const baseResponse = require("../../config/baseResponseStatus");
 const {response, errResponse} = require("../../config/response");
 
 
+//test
+exports.test = async function (req, res) {
+    console.log("test success");
+    res.send("test success");
+};
+
 
 //3.1 유저 일정 조회 *
 exports.listSchedule = async function (req, res) {

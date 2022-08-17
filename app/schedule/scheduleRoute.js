@@ -4,18 +4,10 @@ const schedule = require('./scheduleController.js');
 const app = express();
 
 
-app.use(express.json({
-        limit: '50mb'
-}));
 
-app.listen(80, () => {
-        console.log("Server started. port 80.");
-});
+//test
+app.get("/app/test", schedule.test); 
 
-app.get("/app", async (req, res) => {
-        console.log("server test");
-        res.send("server test");
-})
 
 //3.1 일정 조회 api
 app.get("/app/schedule", schedule.listSchedule);
