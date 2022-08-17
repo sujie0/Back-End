@@ -8,10 +8,14 @@ app.use(express.json({
         limit: '50mb'
 }));
 
-app.listen(3000, () => {
-        console.log("Server started. port 3000.");
+app.listen(80, () => {
+        console.log("Server started. port 80.");
 });
 
+app.get("/app", async (req, res) => {
+        console.log("server test");
+        res.send("server test");
+})
 
 //3.1 일정 조회 api
 app.get("/app/schedule", schedule.listSchedule);
