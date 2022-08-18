@@ -11,6 +11,17 @@ const pool = mysql.createPool({
   database: 'timetuning'
 });
 
+/*
+const pool = mysql.createPool({
+   connectionLimit: 10,
+   host: '127.0.0.1',
+   port: 3307,
+   user: 'root',
+   password: '1234',
+   database: 'test'
+ });
+*/
+
 const query = async (alias, values) => {
   return new Promise((resolve, reject) =>
     pool.query(sql[alias], values, (error, results) => {

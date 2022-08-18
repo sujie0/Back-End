@@ -5,6 +5,7 @@ const baseResponse = require("../../config/baseResponseStatus");
 const {response, errResponse} = require("../../config/response");
 
 
+
 //test
 exports.test = async function (req, res) {
     console.log("test success");
@@ -35,17 +36,17 @@ exports.listSchedule = async function (req, res) {
 //3.2 일정 생성
 exports.createSchedule = async function (req, res) {
 
-   const {scheduleTitle, scheduleCom, scheduleColor, startYMD, endYMD} = req.body.param;
-
     try{
         newSchedule = await mysql.query('insertScheduleData', req.body.param);
         console.log(newSchedule);
         res.send(newSchedule);
     }
     catch(error){
-        console.log(baseResponse.CREATESCHEDULE_EMPTY)
+        console.log(errResponse(baseResponse.CREATESCHEDULE_EMPTY))
         res.send(errResponse(baseResponse.CREATESCHEDULE_EMPTY));
+
     }
+
 };
 //scheduleTitle, startYMD, endYMD를 입력하지 않을 경우 오류가 나야하는데 scheduleTitle에서 나지 않음
 //로그인된 userIdx를 가져와야함
@@ -68,10 +69,11 @@ exports.addScheduleMembers = async function (req, res) {
     }
     else{
         //res.send(idSearchResult);
-        console.log(idSearchResult);//userIdx, userId, userName 받아옴 -> schedulemember에 추가해야함
+        console.log(idSearchResult);
         const SchedulememberResult = await mysql.query('addMember', req.body.param);
         res.send(SchedulememberResult);
         console.log(SchedulememberResult);
+        console.log(response(baseResponse.SUCCESS))
     }
 };
 

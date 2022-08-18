@@ -8,23 +8,21 @@ module.exports = {
 
     //3. schedule
 
-    listSchedule: `SELECT * FROM schedule WHERE userIdx = ?`,
+    listSchedule: `SELECT * FROM Schedule WHERE userIdx = ?`,
     //스케줄 조회 쿼리*3.1
-    insertScheduleData:`INSERT INTO schedule (scheduleTitle, scheduleCom, scheduleColor, startYMD, endYMD) 
-                        VALUES (?, ?, ?, ?, ?);`,
+    insertScheduleData:`INSERT INTO Schedule (scheduleTitle, scheduleCom, scheduleColor, startYMD, endYMD) 
+                    VALUES (?, ?, ?, ?, ?)`,
     //스케줄정보 입력 쿼리*3.2
-    addMember: `INSERT INTO scheduleMember (scheduleIdx, userId, userName, userIdx)
-	            SELECT schedule.scheduleIdx, user.userId, user.userName, user.userIdx
-                FROM schedule, User
-                WHERE schedule.scheduleIdx=(SELECT MAX(scheduleIdx) FROM schedule) AND user.userId=?`,
+    addMember: `INSERT INTO ScheduleMember (scheduleIdx, userId, userName, userIdx)
+	            SELECT Schedule.scheduleIdx, User.userId, User.userName, User.userIdx
+                FROM Schedule, User
+                WHERE Schedule.scheduleIdx=(SELECT MAX(scheduleIdx) FROM Schedule) AND User.userId=?`,
     //스케줄 멤버에 추가*3.3
-    searchMemberLike: `SELECT * FROM user WHERE userId LIKE '%?%'`,
+    searchMemberLike: `SELECT * FROM User WHERE userId LIKE '%?%'`,
     //멤버 검색 쿼리, (?의 값을 포함하는 유저 모두 조회->오류있음)
-    searchMember: `SELECT userIdx, userId, userName FROM user WHERE userId = ?`,
+    searchMember: `SELECT userIdx, userId, userName FROM User WHERE userId = ?`,
     //멤버 검색 쿼리*3.3
-    scheduleDelete: `DELETE FROM schedule WHERE scheduleIdx = ?`
+    scheduleDelete: `DELETE FROM Schedule WHERE scheduleIdx = ?`
     //스케줄 삭제 쿼리*3.4
-
-
 
 }
