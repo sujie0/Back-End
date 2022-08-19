@@ -12,8 +12,8 @@ app.use(express.json({
 }));
     
     
- app.listen(3000, () => {
-        console.log("Server started. port 3000. Schedule");
+ app.listen(5000, () => { 
+        console.log("Server started. port 5000. Schedule");
 });
 
 
