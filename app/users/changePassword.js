@@ -29,7 +29,7 @@ router.patch('', (req, res, next) => {
     });
     module.exports=con;
 
-    var sql = 'SELECT * FROM user WHERE userId=?';
+    var sql = 'SELECT * FROM User WHERE userId=?';
     con.query(sql, [id], function(err, data){
         if(data.length){
             var valid_pw = data[0].password;
@@ -40,7 +40,7 @@ router.patch('', (req, res, next) => {
         }
     });
     if(new_pw==new_pw_check){
-        var sql = 'UPDATE user SET password=? WHERE userId=?';
+        var sql = 'UPDATE User SET password=? WHERE userId=?';
         con.query(sql, [new_pw, id], function(error, result){
             try{
                 res.send("비밀번호 변경 완료");

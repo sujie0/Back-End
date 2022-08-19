@@ -32,11 +32,11 @@ router.delete('', (req, res, next) => {
    
     module.exports = con;
 
-    var sql = 'SELECT * FROM user WHERE userId=?';
+    var sql = 'SELECT * FROM User WHERE userId=?';
     con.query(sql, [id], function(error, result){
         try{
             var valid_id = result[0].userId;
-            var sql = 'DELETE FROM user WHERE userId=?';
+            var sql = 'DELETE FROM User WHERE userId=?';
             con.query(sql, [id], function(err, data){
             try{
                 res.send("회원 탈퇴가 완료되었습니다.");

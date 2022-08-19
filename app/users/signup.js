@@ -30,7 +30,7 @@ router.post('', (req, res, next) => {
     });
     module.exports=con;
    
-    var sql = 'SELECT * from user where userId=?';
+    var sql = 'SELECT * from User where userId=?';
     con.query(sql, id, function(err, data){
         if(data.length){
             console.log("이미 존재하는 아이디입니다.");
@@ -41,7 +41,7 @@ router.post('', (req, res, next) => {
         else{
             if(name&&id&&pw){
                 if(pw==pw_check){
-                    con.query('INSERT INTO user(userName,userId,password) VALUES (?, ?, ?)',[name, id, pw],function(err,result, field){
+                    con.query('INSERT INTO User(userName,userId,password) VALUES (?, ?, ?)',[name, id, pw],function(err,result, field){
                         if(err){
                             console.log(err);
                             con.end();
