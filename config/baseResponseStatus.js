@@ -32,7 +32,7 @@ module.exports ={
     SIGNIN_PASSWORD_EMPTY : { "isSuccess": false, "code": 2204, "message": "비밀번호를 입력 해주세요." },
         //회원검색-2300번대
     SEARCH_USER_USERID_EMPTY : { "isSuccess": false, "code": 2301, "message": "Id를 입력해주세요." },
-    SEARCH_USER_USERID_NOT_EXIST : { "isSuccess": false, "code": 2302, "message": "해당 회원이 존재하지 않습니다." },
+    SEARCH_USER_USERID_NOT_EXIST : { "isSuccess": false, "code": 2302, "message": "존재하지 않는 아이디입니다." },
     // Response error/3000번대
         //회원가입 중복 오류
     SIGNUP_REDUNDANT_EMAIL : { "isSuccess": false, "code": 3001, "message":"이미 사용중인 이메일입니다." },

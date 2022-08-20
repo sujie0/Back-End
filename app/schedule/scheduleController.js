@@ -13,7 +13,8 @@ exports.test = async function (req, res) {
 };
 
 
-//3.1 유저 일정 조회 *
+
+//3.1 유저 일정 조회 
 exports.listSchedule = async function (req, res) {
 
     const scheduleList = await mysql.query('listSchedule', req.body.param);
@@ -35,20 +36,32 @@ exports.listSchedule = async function (req, res) {
 
 //3.2 일정 생성
 exports.createSchedule = async function (req, res) {
+    
+    const title = req.body.scheduleTitle;
+    const comment = req.body.scheduleCom;
+    const color = req.body.scheduleColor;
+    const start = req.body.startYMD;
+    const end = req.body.endYMD;
 
-    try{
-        newSchedule = await mysql.query('insertScheduleData', req.body.param);
+    if(!title){
+        console.log(errResponse(baseResponse.SCHEDULE_TITLE_EMPTY));
+        res.send(errResponse(baseResponse.SCHEDULE_TITLE_EMPTY));
+    }
+    else if(!start){
+        console.log(errResponse(baseResponse.SCHEDULE_STARTYMD_EMPTY));
+        res.send(errResponse(baseResponse.SCHEDULE_STARTYMD_EMPTY));
+    }
+    else if(!end){
+        console.log(errResponse(baseResponse.SCHEDULE_ENDYMD_EMPTY));
+        res.send(errResponse(baseResponse.SCHEDULE_ENDYMD_EMPTY));
+    }
+    else{
+        newSchedule = await mysql.query('insertScheduleData', [title, comment, color, start, end]);
         console.log(newSchedule);
         res.send(newSchedule);
+        console.log(response(baseResponse.SUCCESS_SCHEDULE));
     }
-    catch(error){
-        console.log(errResponse(baseResponse.CREATESCHEDULE_EMPTY))
-        res.send(errResponse(baseResponse.CREATESCHEDULE_EMPTY));
-
-    }
-
 };
-//scheduleTitle, startYMD, endYMD를 입력하지 않을 경우 오류가 나야하는데 scheduleTitle에서 나지 않음
 //로그인된 userIdx를 가져와야함
 
 
@@ -57,9 +70,12 @@ exports.createSchedule = async function (req, res) {
 //3.3 일정 멤버 추가 api
 exports.addScheduleMembers = async function (req, res) {
 
-    const [idSearchResult] = await mysql.query('searchMember', req.body.param);//검색한 회원의 정보 조회
+    const unfixedSchedule = req.body.scheduleIdx;
+    const newMemberId = req.body.userId;
 
-    if(!req.body.param){
+    const [idSearchResult] = await mysql.query('searchMember', newMemberId);//검색한 회원의 정보 조회
+
+    if(!newMemberId){
         res.send(errResponse(baseResponse.SEARCH_USER_USERID_EMPTY));
         console.log(baseResponse.SEARCH_USER_USERID_EMPTY);
     }
@@ -68,11 +84,9 @@ exports.addScheduleMembers = async function (req, res) {
         console.log(baseResponse.SEARCH_USER_USERID_NOT_EXIST);
     }
     else{
-        //res.send(idSearchResult);
         console.log(idSearchResult);
-        const SchedulememberResult = await mysql.query('addMember', req.body.param);
-        res.send(SchedulememberResult);
-        console.log(SchedulememberResult);
+        res.send(idSearchResult);
+        mysql.query('addMember', [unfixedSchedule, newMemberId]);
         console.log(response(baseResponse.SUCCESS))
     }
 };

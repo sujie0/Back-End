@@ -16,7 +16,7 @@ module.exports = {
     addMember: `INSERT INTO ScheduleMember (scheduleIdx, userId, userName, userIdx)
 	            SELECT Schedule.scheduleIdx, User.userId, User.userName, User.userIdx
                 FROM Schedule, User
-                WHERE Schedule.scheduleIdx=(SELECT MAX(scheduleIdx) FROM Schedule) AND User.userId=?`,
+                WHERE Schedule.scheduleIdx=? AND User.userId=?`,
     //스케줄 멤버에 추가*3.3
     searchMemberLike: `SELECT * FROM User WHERE userId LIKE '%?%'`,
     //멤버 검색 쿼리, (?의 값을 포함하는 유저 모두 조회->오류있음)
