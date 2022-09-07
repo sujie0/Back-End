@@ -38,6 +38,7 @@ exports.listSchedule = async function (req, res) {
 exports.createSchedule = async function (req, res) {
     
     const title = req.body.scheduleTitle;
+    const user = req.body.userIdx
     const comment = req.body.scheduleCom;
     const color = req.body.scheduleColor;
     const start = req.body.startYMD;
@@ -56,13 +57,13 @@ exports.createSchedule = async function (req, res) {
         res.send(errResponse(baseResponse.SCHEDULE_ENDYMD_EMPTY));
     }
     else{
-        newSchedule = await mysql.query('insertScheduleData', [title, comment, color, start, end]);
+        newSchedule = await mysql.query('insertScheduleData', [title, user, comment, color, start, end]);
         console.log(newSchedule);
         res.send(newSchedule);
         console.log(response(baseResponse.SUCCESS_SCHEDULE));
     }
 };
-//로그인된 userIdx를 가져와야함
+
 
 
 

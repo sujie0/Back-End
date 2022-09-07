@@ -7,8 +7,8 @@ CREATE TABLE User
     `userId`         VARCHAR(45)    NOT NULL    COMMENT '유저 아이디', 
     `userName`       VARCHAR(45)    NOT NULL    COMMENT '유저 이름', 
     `profileImgUrl`  TEXT           NULL        COMMENT '유저 프로필 사진', 
-    `userEmail`      VARCHAR(45)    NOT NULL    COMMENT '유저 이메일', 
-    `password`       VARCHAR(45)    NULL        COMMENT '비밀번호', 
+    `userEmail`      VARCHAR(45)    NULL        COMMENT '유저 이메일', 
+    `password`       VARCHAR(45)    NOT NULL    COMMENT '비밀번호', 
      PRIMARY KEY (userIdx, userId)
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE ScheduleMember
     `scheduleIdx`  INT            NOT NULL    COMMENT '일정 번호', 
     `userIdx`      INT            NOT NULL    COMMENT '유저 번호', 
     `userId`       VARCHAR(45)    NOT NULL    COMMENT '유저 아이디', 
-    `userName`     VARCHAR(45)    NOT NULL    COMMENT '유저 이름'
+     PRIMARY KEY (scheduleIdx, userIdx, userId)
 );
 
 ALTER TABLE ScheduleMember COMMENT '참여 멤버 테이블';
@@ -51,7 +51,7 @@ ALTER TABLE ScheduleMember
         REFERENCES Schedule (scheduleIdx) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE ScheduleMember
-    ADD CONSTRAINT FK_ScheduleMember_userIdx_User_userIdx FOREIGN KEY (userIdx, userId, userName)
-        REFERENCES User (userIdx, userId, userName) ON DELETE RESTRICT ON UPDATE RESTRICT;
+    ADD CONSTRAINT FK_ScheduleMember_userIdx_User_userIdx FOREIGN KEY (userIdx, userId)
+        REFERENCES User (userIdx, userId) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 
