@@ -16,10 +16,10 @@ module.exports = {
 	VALUES (?, (SELECT userIdx FROM User WHERE userIdx=?), ?, ?, ?, ?)`,
 
     //스케줄 멤버에 추가*3.3
-    addMember: `INSERT INTO ScheduleMember (scheduleIdx, userId, userName, userIdx)
-	            SELECT Schedule.scheduleIdx, User.userId, User.userName, User.userIdx
+    addMember: `INSERT INTO ScheduleMember (scheduleIdx, userIdx)
+	            SELECT Schedule.scheduleIdx, User.userIdx
                 FROM Schedule, User
-                WHERE Schedule.scheduleIdx=? AND User.userId=?`,
+                WHERE Schedule.scheduleIdx=? AND User.userIdx=?`,
 
     //멤버 검색 쿼리*3.3
     searchMember: `SELECT userIdx, userId, userName FROM User WHERE userId = ?`,

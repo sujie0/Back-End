@@ -87,7 +87,7 @@ exports.addScheduleMembers = async function (req, res) {
     else{
         console.log(idSearchResult);
         res.send(idSearchResult);
-        mysql.query('addMember', [unfixedSchedule, newMemberId]);
+        mysql.query('addMember', [unfixedSchedule, idSearchResult.userIdx]);
         console.log(response(baseResponse.SUCCESS))
     }
 };
