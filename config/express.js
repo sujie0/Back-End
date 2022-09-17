@@ -24,7 +24,7 @@ module.exports = function () {
     /* App (Android, iOS) */
     // 도메인을 추가할 경우 이곳에 Route를 추가하세요.
     require('../app/users/userRoute')(app);
-   // require('../app/schedule/scheduleRoute')(app);
+    require('../app/schedule/scheduleRoute')(app);
 
     return app;
 };

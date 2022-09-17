@@ -1,15 +1,6 @@
-const express = require("express");
+module.exports = function(app){
+        
 const schedule = require('./scheduleController.js');
-const app = express();
-
-
-app.use(express.json({
-        limit: '50mb'
-}));
-    
- app.listen(5000, () => { 
-        console.log("Server started. port 5000. Schedule");
-});
 
 
 //test
@@ -32,3 +23,4 @@ app.post("/app/schedule/create", schedule.createSchedule);
 app.delete("/app/schedule/delete/:scheduleIdx", schedule.deleteSchedule);
 
 
+}

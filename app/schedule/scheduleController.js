@@ -1,4 +1,3 @@
-const express = require("express");
 const mysql = require("../mysql");
 const baseResponse = require("../../config/baseResponseStatus");
 const {response, errResponse} = require("../../config/response");
