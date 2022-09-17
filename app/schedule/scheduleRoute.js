@@ -1,16 +1,11 @@
 const express = require("express");
-const mysql = require("../mysql/index.js");
 const schedule = require('./scheduleController.js');
 const app = express();
-const baseResponse = require("../../config/baseResponseStatus");
-const {response, errResponse} = require("../../config/response");
-
 
 
 app.use(express.json({
         limit: '50mb'
 }));
-    
     
  app.listen(5000, () => { 
         console.log("Server started. port 5000. Schedule");
@@ -34,9 +29,6 @@ app.post("/app/schedule/create", schedule.createSchedule);
 
 
 //3.4 일정 삭제 api
-app.delete("/app/schedule/delete/:scheduleIdx", async (req, res) => {
-        const {scheduleIdx} = req.params;
-        const result = await mysql.query('scheduleDelete', scheduleIdx);
-        res.send(result);
-        console.log(response(baseResponse.SUCCESS_DELETE_SCHEDULE));
-});
+app.delete("/app/schedule/delete/:scheduleIdx", schedule.deleteSchedule);
+
+

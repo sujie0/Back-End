@@ -1,6 +1,5 @@
 const express = require("express");
 const mysql = require("../mysql");
-const app = express();
 const baseResponse = require("../../config/baseResponseStatus");
 const {response, errResponse} = require("../../config/response");
 
@@ -74,7 +73,7 @@ exports.addScheduleMembers = async function (req, res) {
     const unfixedSchedule = req.body.scheduleIdx;
     const newMemberId = req.body.userId;
 
-    const [idSearchResult] = await mysql.query('searchMember', newMemberId);//검색한 회원의 정보 조회
+    const [idSearchResult] = await mysql.query('searchMember', newMemberId);
 
     if(!newMemberId){
         res.send(errResponse(baseResponse.SEARCH_USER_USERID_EMPTY));
@@ -95,4 +94,10 @@ exports.addScheduleMembers = async function (req, res) {
 
 
 
-//3.4 일정 삭제 -> 라우트
+//3.4 일정 삭제
+exports.deleteSchedule = async function (req, res) {
+    const {scheduleIdx} = req.params;
+    const result = await mysql.query('scheduleDelete', scheduleIdx);
+    res.send(result);
+    console.log(response(baseResponse.SUCCESS_DELETE_SCHEDULE));
+};
