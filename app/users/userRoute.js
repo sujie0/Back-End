@@ -5,6 +5,11 @@ module.exports = function(app){
     const changePassword = require('./changePassword');
     const getSchedules = require('./getSchedules');
     
+    //0. test
+    app.get("/user/test", async(req,res) => {
+        console.log("user test success");
+        res.send("user test success");
+    }); 
 
     // 1. 유저 생성 (회원가입) API -> OK
     app.use('/users', signup);

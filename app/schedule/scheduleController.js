@@ -4,30 +4,28 @@ const {response, errResponse} = require("../../config/response");
 
 
 
-//test
+//3.0 test
 exports.test = async function (req, res) {
-    console.log("test success");
-    res.send("test success");
+    console.log("schedule test success");
+    res.send("schedule test success");
 };
 
 
 
-//3.1 유저 일정 조회 
+//3.1 유저 일정 조회 -> 오류 있음
 exports.listSchedule = async function (req, res) {
 
-    const scheduleList = await mysql.query('listSchedule', req.body.param);
-
-    if(!scheduleList) {
-        console.log('empty schedule');
-        res.send("empty schedule");
+    const{userIdx} = req.params;
+    const scheduleList = await mysql.query('listSchedule', userIdx);
+    if(!scheduleList){
+        res.send("조율중인 일정이 없습니다.");
+        console.log("조율중인 일정이 없습니다.");
     }
     else{
-        console.log(scheduleList);
         res.send(scheduleList);
+        console.log(response(baseResponse.SUCCESS_UNFIXED_SCHEDULE));
     }
 };
-//L12. const [scheduleList] -> 모든 일정이 출력되지 않음. 하나만 출력됨
-//L12. const scheduleList -> 스케줄이 없을 경우 empty scheule 안됨
 
 
 
@@ -96,7 +94,7 @@ exports.addScheduleMembers = async function (req, res) {
 //3.4 일정 삭제
 exports.deleteSchedule = async function (req, res) {
     const {scheduleIdx} = req.params;
-    const result = await mysql.query('scheduleDelete', scheduleIdx);
-    res.send(result);
+    const deleteResult = await mysql.query('scheduleDelete', scheduleIdx);
+    res.send(deleteResult);
     console.log(response(baseResponse.SUCCESS_DELETE_SCHEDULE));
 };

@@ -4,8 +4,8 @@ module.exports ={
     SUCCESS : { "isSuccess": true, "code": 1000, "message":"성공" },
     SUCCESS_SIGNUP : { "isSuccess": true, "code": 1001, "message": "회원가입 성공" },
     SUCCESS_SCHEDULE : { "isSuccess": true, "code": 1002, "message": "일정생성 성공." },
-    SUCCESS_DELETE_SCHEDULE : { "isSuccess": true, "code": 1002, "message": "일정삭제 성공." },
-
+    SUCCESS_DELETE_SCHEDULE : { "isSuccess": true, "code": 1003, "message": "일정삭제 성공." },
+    SUCCESS_UNFIXED_SCHEDULE : { "isSuccess": true, "code": 1004, "message": "조율중인 일정 조회" },
 
     //Request error-2000번대
         //스케줄 입력 오류/2000번대
@@ -33,6 +33,8 @@ module.exports ={
         //회원검색-2300번대
     SEARCH_USER_USERID_EMPTY : { "isSuccess": false, "code": 2301, "message": "Id를 입력해주세요." },
     SEARCH_USER_USERID_NOT_EXIST : { "isSuccess": false, "code": 2302, "message": "존재하지 않는 아이디입니다." },
+
+
     // Response error/3000번대
         //회원가입 중복 오류
     SIGNUP_REDUNDANT_EMAIL : { "isSuccess": false, "code": 3001, "message":"이미 사용중인 이메일입니다." },
