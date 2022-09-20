@@ -1,5 +1,3 @@
-﻿-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
-
 -- User Table Create SQL
 CREATE TABLE User
 (
@@ -30,7 +28,7 @@ ALTER TABLE Schedule COMMENT '일정 테이블';
 
 ALTER TABLE Schedule
     ADD CONSTRAINT FK_Schedule_userIdx_User_userIdx FOREIGN KEY (userIdx)
-        REFERENCES User (userIdx) ON DELETE RESTRICT ON UPDATE RESTRICT;
+        REFERENCES User (userIdx) ON DELETE CASCADE;
 
 
 -- ScheduleMember Table Create SQL
@@ -45,10 +43,9 @@ ALTER TABLE ScheduleMember COMMENT '참여 멤버 테이블';
 
 ALTER TABLE ScheduleMember
     ADD CONSTRAINT FK_ScheduleMember_scheduleIdx_Schedule_scheduleIdx FOREIGN KEY (scheduleIdx)
-        REFERENCES Schedule (scheduleIdx) ON DELETE RESTRICT ON UPDATE RESTRICT;
+        REFERENCES Schedule (scheduleIdx) ON DELETE CASCADE;
 
 ALTER TABLE ScheduleMember
     ADD CONSTRAINT FK_ScheduleMember_userIdx_User_userIdx FOREIGN KEY (userIdx)
-        REFERENCES User (userIdx) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
+        REFERENCES User (userIdx) ON DELETE CASCADE;
 

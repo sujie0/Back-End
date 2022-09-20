@@ -15,7 +15,7 @@ router.delete('', (req, res, next) => {
         host: 'timetuning.cwrxmkgsy5uc.ap-northeast-2.rds.amazonaws.com',
         port: '3306',
         user: 'admin',
-        password: '12345678',
+        password: 'timetuningrdspassword',
         database: 'timetuning'
     });
 
