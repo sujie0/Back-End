@@ -54,9 +54,8 @@ exports.createSchedule = async function (req, res) {
     }
     else{
         newSchedule = await mysql.query('insertScheduleData', [title, user, comment, color, start, end]);
-        console.log(newSchedule);
-        res.send(newSchedule);
-        console.log(response(baseResponse.SUCCESS_SCHEDULE));
+        res.send(response(baseResponse.SUCCESS_SCHEDULE, newSchedule));
+        console.log(response(baseResponse.SUCCESS_SCHEDULE, newSchedule));
     }
 };
 
@@ -81,10 +80,9 @@ exports.addScheduleMembers = async function (req, res) {
         console.log(baseResponse.SEARCH_USER_USERID_NOT_EXIST);
     }
     else{
-        console.log(idSearchResult);
-        res.send(idSearchResult);
         mysql.query('addMember', [unfixedSchedule, idSearchResult.userIdx]);
-        console.log(response(baseResponse.SUCCESS))
+        res.send(response(baseResponse.SUCCESS_SCHEDULE_MEMBER, idSearchResult));
+        console.log(response(baseResponse.SUCCESS_SCHEDULE_MEMBER, idSearchResult));
     }
 };
 
@@ -95,6 +93,6 @@ exports.addScheduleMembers = async function (req, res) {
 exports.deleteSchedule = async function (req, res) {
     const {scheduleIdx} = req.params;
     const deleteResult = await mysql.query('scheduleDelete', scheduleIdx);
-    res.send(deleteResult);
+    res.send(response(baseResponse.SUCCESS_DELETE_SCHEDULE, deleteResult));
     console.log(response(baseResponse.SUCCESS_DELETE_SCHEDULE));
 };

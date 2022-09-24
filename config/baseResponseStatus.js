@@ -4,8 +4,9 @@ module.exports ={
     SUCCESS : { "isSuccess": true, "code": 1000, "message":"성공" },
     SUCCESS_SIGNUP : { "isSuccess": true, "code": 1001, "message": "회원가입 성공" },
     SUCCESS_SCHEDULE : { "isSuccess": true, "code": 1002, "message": "일정생성 성공." },
-    SUCCESS_DELETE_SCHEDULE : { "isSuccess": true, "code": 1003, "message": "일정삭제 성공." },
-    SUCCESS_UNFIXED_SCHEDULE : { "isSuccess": true, "code": 1004, "message": "조율중인 일정 조회" },
+    SUCCESS_SCHEDULE_MEMBER : { "isSuccess": true, "code": 1003, "message": "일정 멤버 추가 성공." },
+    SUCCESS_DELETE_SCHEDULE : { "isSuccess": true, "code": 1004, "message": "일정삭제 성공." },
+    SUCCESS_UNFIXED_SCHEDULE : { "isSuccess": true, "code": 1005, "message": "조율중인 일정 조회" },
 
     //Request error-2000번대
         //스케줄 입력 오류/2000번대
